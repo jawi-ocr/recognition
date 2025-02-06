@@ -1,20 +1,41 @@
 package recognition
 
 import (
+	"errors"
+
 	"github.com/otiai10/gosseract/v2"
 )
 
-func tesseract(data []byte, dataset string) string {
-	if (data == nil) || (dataset == "") {
-		return ""
+type tesseract struct {
+	client *gosseract.Client
+}
+
+func NewTesseract(tessdata string) Client {
+
+	c := &tesseract{
+		client: gosseract.NewClient(),
 	}
 
-	client := gosseract.NewClient()
-	defer client.Close()
+	c.client.TessdataPrefix = tessdata
 
-	client.SetLanguage(dataset)
-	client.SetImageFromBytes(data)
-	res, _ := client.Text()
+	return c
+}
 
-	return res
+func (t *tesseract) Recognize(dataset string, image []byte) (string, error) {
+	if (dataset == "") || (image == nil) {
+		return "", errors.New("Dataset or image cannot be empty or nil")
+	}
+
+	t.client.SetLanguage(dataset)
+	t.client.SetImageFromBytes(image)
+	res, err := t.client.Text()
+	if err != nil {
+		return "", err
+	}
+
+	return res, nil
+}
+
+func (t *tesseract) Stop() {
+	t.client.Close()
 }
