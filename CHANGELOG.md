@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.3.0](https://github.com/jawi-ocr/recognition/compare/v0.2.0...v0.3.0) (2025-02-19)
+
+
+### Features
+
+* Add example code ([ed539bd](https://github.com/jawi-ocr/recognition/commit/ed539bdd9bed5f1e1d6364d0aa86d7f200ea76e0))
+* **tesseract:** Add new interface to set dataset path ([f7c5bf3](https://github.com/jawi-ocr/recognition/commit/f7c5bf30ba13c02f782cf08ef3bae102a6b271dd))
+
 ## [0.2.0](https://github.com/jawi-ocr/recognition/compare/v0.0.1...v0.2.0) (2025-02-06)
 
 
