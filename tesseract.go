@@ -10,13 +10,11 @@ type tesseract struct {
 	client *gosseract.Client
 }
 
-func NewTesseract(tessdata string) Client {
+func NewTesseract() Client {
 
 	c := &tesseract{
 		client: gosseract.NewClient(),
 	}
-
-	c.client.TessdataPrefix = tessdata
 
 	return c
 }
@@ -34,6 +32,10 @@ func (t *tesseract) Recognize(dataset string, image []byte) (string, error) {
 	}
 
 	return res, nil
+}
+
+func (t *tesseract) SetDataset(path string) {
+	t.client.TessdataPrefix = path
 }
 
 func (t *tesseract) Stop() {
